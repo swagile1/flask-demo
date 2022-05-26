@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Flask Demo {% endblock %}</h1>
+
+    <div class="user">
+        <form method="POST" action="/caption">
+            <input type="text" name="caption" />
+            <button name="captionFormButton">Render Goofy Dog Photo</button>
+        </form>
+    </div>
+{% endblock %}
