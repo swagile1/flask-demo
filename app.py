@@ -4,6 +4,7 @@ from signal import SIGINT
 from time import sleep
 import sqlite3
 from PIL import Image, ImageDraw, ImageFont
+import numpy as np
 import sys
 from uuid import uuid4
 
@@ -40,6 +41,11 @@ def caption():
     filename = create_captioned_file(caption)
     return render_template('pickles.html', filename=filename, caption=caption)
 
+@app.route('/mb/<iterations>')
+def mb(iterations):
+    filename = create_mandelbrot_file(iterations)
+    return render_template('mandelbrot.html', filename=filename, iterations=iterations)
+
 def create_captioned_file(caption):
     try:
         pickles = Image.open("images/pickles-raindrop.jpg")
@@ -56,6 +62,24 @@ def create_captioned_file(caption):
     idraw.text((10, 10), text, font=font)
     filename = 'images/' + uuid4().hex + '.png'
     pickles.save(filename)
+    return filename
+
+def complex_matrix(xmin, xmax, ymin, ymax, pixel_density):
+    re = np.linspace(xmin, xmax, int((xmax - xmin) * pixel_density))
+    im = np.linspace(ymin, ymax, int((ymax - ymin) * pixel_density))
+    return re[np.newaxis, :] + im[:, np.newaxis] * 1j
+
+def is_stable(c, num_iterations):
+    z = 0
+    for _ in range(num_iterations):
+        z = z ** 2 + c
+    return abs(z) <= 2
+
+def create_mandelbrot_file(iterations):
+    c = complex_matrix(-2, 0.5, -1.5, 1.5, pixel_density=512)
+    image = Image.fromarray(~is_stable(c, num_iterations=30))
+    filename = 'images/mandelbrot-' + iterations + '.png'
+    image.save(filename)
     return filename
 
 @app.route('/images/<file>')

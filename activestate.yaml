@@ -1,4 +1,4 @@
-project: https://platform.activestate.com/shanew/flask-demo?branch=main&commitID=f235ef64-10ef-4ed4-bd65-dc412b030cff
+project: https://platform.activestate.com/shanew/flask-demo?branch=main&commitID=5494a218-6a46-4303-9ce7-e0d63feae89a
 constants:
   - name: FLASK_APP
     value: app
