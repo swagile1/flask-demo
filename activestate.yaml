@@ -9,9 +9,9 @@ scripts:
   - name: startApp
     language: bash
     value: |
-      flask run &
+      flask run -p 9000 &
       sleep 2
-      python3 -m webbrowser -t "http://127.0.0.1:5000/"
+      python3 -m webbrowser -t "http://127.0.0.1:9000/"
   - name: prepDB
     language: bash
     value: sqlite3 db/database.db < db/schema.sql
