@@ -57,7 +57,7 @@ def create_captioned_file(caption):
     idraw = ImageDraw.Draw(pickles)
     text = caption
 
-    font = ImageFont.truetype("fonts/LiberationSerif-Regular.ttf", size=18)
+    font = ImageFont.truetype("fonts/LiberationSerif-Regular.ttf", size=72)
 
     idraw.text((10, 10), text, font=font)
     filename = 'images/' + uuid4().hex + '.png'
