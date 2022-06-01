@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Flask Demo {% endblock %}</h1>
+    <h1>{% block title %} T-Shirt Shop Admin Console {% endblock %}</h1>
 
-    <div class="user">
+    <div class="box">
         <form method="POST" action="/caption">
             <input type="text" name="caption" />
-            <button name="captionFormButton">Render Goofy Dog Photo</button>
+            <button name="captionFormButton">Render Goofy Dog T-Shirt</button>
         </form>
     </div>
-    <a href="/mb/30">Mandelbrot with 30 iterations</a>
+    <a href="/mb/30">Render Mandlebrot Logo</a>
 {% endblock %}

@@ -21,7 +21,7 @@ def hello():
 
 @app.route('/about')
 def about():
-    return '<h3>This is an example web application.</h3>'
+    return '<h3>This is an example web application, built on Flask and the <a href="https://platform.activestate.com/shanew/keeping-devs-happy-demo-june-2022">ActiveState keeping-devs-happy project</a>.</h3>'
 
 @app.route('/users')
 def users():
@@ -48,7 +48,7 @@ def mb(iterations):
 
 def create_captioned_file(caption):
     try:
-        pickles = Image.open("images/pickles-raindrop.jpg")
+        pickles = Image.open("images/t-shirt-template.jpg")
 
     except:
         print("Unable to load image")
@@ -59,7 +59,7 @@ def create_captioned_file(caption):
 
     font = ImageFont.truetype("fonts/LiberationSerif-Regular.ttf", size=72)
 
-    idraw.text((10, 10), text, font=font)
+    idraw.text((400, 360), text, font=font, fill="#00FFFF")
     filename = 'images/' + uuid4().hex + '.png'
     pickles.save(filename)
     return filename
