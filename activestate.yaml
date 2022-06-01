@@ -1,4 +1,4 @@
-project: https://platform.activestate.com/shanew/flask-demo?branch=main&commitID=1914027b-de7f-4e28-80e5-ad6bf29440da
+project: https://platform.activestate.com/shanew/keeping-devs-happy-demo-june-2022?branch=main&commitID=be461c89-2991-484b-94d0-793a9d0c98e5
 constants:
   - name: FLASK_APP
     value: app
@@ -9,17 +9,18 @@ scripts:
   - name: startApp
     language: python3
     value: |
+      import signal
       import subprocess
+      import sys
       import time
       import webbrowser
-      import signal
 
-      flask_proc = subprocess.Popen(['flask', 'run', '-p', '9000'])
+      flask_proc = subprocess.Popen([sys.executable, '-m', 'flask', 'run', '-p', '9000'])
       signal.signal(signal.SIGINT, lambda signum, frame: exit(flask_proc.terminate()))
       time.sleep(2)
       webbrowser.open_new_tab('http://127.0.0.1:9000')
 
-      while True:
+      while flask_proc.poll() == None:
         time.sleep(0.1)
 
   - name: prepDB
